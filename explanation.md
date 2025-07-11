@@ -1,62 +1,53 @@
 # Dockerization of Yolo E-Commerce Application: Implementation Explanation
 
 ## 1. Choice of Base Image
-- **Frontend**:  (~150MB) chosen for compatibility with Node 13.12.0 (per ) and minimal size, ideal for React.
-- **Backend**:  for consistency and Express.js compatibility.
-- **MongoDB**:  for a reliable MongoDB instance.
-- **Total Size**: Frontend + backend <400MB (verified with REPOSITORY             TAG       IMAGE ID       CREATED        SIZE
-mwas121/yolo-client    v1.0.0    a6eedd39f3e6   4 days ago     500MB
-mwas121/yolo-backend   v1.0.0    5940165f9211   4 days ago     226MB
-mongo                  latest    14bce8bf75c7   5 weeks ago    892MB
-alpine                 latest    cea2ff433c61   5 weeks ago    8.31MB
-ubuntu                 latest    bf16bdcff9c9   6 weeks ago    78.1MB
-jenkins/jenkins        lts       adb267fe4d1d   6 weeks ago    478MB
-hello-world            latest    74cc54e27dc4   5 months ago   10.1kB
-mwas121/busybox        latest    6d3e4188a38a   9 months ago   4.28MB
-busybox                latest    6d3e4188a38a   9 months ago   4.28MB), achieved using  and .
+- Frontend: node:14-alpine (~150MB) chosen for compatibility with Node 13.12.0 (per client/package.json) and minimal size, ideal for React.
+- Backend: node:14-alpine for consistency and Express.js compatibility.
+- MongoDB: mongo:latest for a reliable MongoDB instance.
+- Total Size: Frontend + backend <400MB (verified with docker images), achieved using --production and .dockerignore.
 
 ## 2. Dockerfile Directives
-- **Frontend (client/Dockerfile)**:
-  - : Lightweight base image.
-  - : Sets working directory.
-  - : Caches dependencies.
-  - : Installs only production dependencies.
-  - : Copies code.
-  - : Documents port.
-  - : Runs React app.
-- **Backend (backend/Dockerfile)**:
-  - Similar, with  and .
-- **Purpose**: Optimized for minimal size and efficient development.
+- Frontend (client/Dockerfile):
+  - FROM node:14-alpine: Lightweight base image.
+  - WORKDIR /app: Sets working directory.
+  - COPY package*.json ./: Caches dependencies.
+  - RUN npm install --production: Installs only production dependencies.
+  - COPY . .: Copies code.
+  - EXPOSE 3000: Documents port.
+  - CMD ["npm", "start"]: Runs React app.
+- Backend (backend/Dockerfile):
+  - Similar, with EXPOSE 5000 and CMD ["node", "server.js"].
+- Purpose: Optimized for minimal size and efficient development.
 
 ## 3. Docker Compose Networking
-- **Network**:  (bridge driver, subnet 172.20.0.0/16) enables microservice communication (e.g., ).
-- **Ports**:  (frontend),  (backend),  (MongoDB).
-- **Reasoning**: Ensures isolation and connectivity.
+- Network: app-net (bridge driver, subnet 172.20.0.0/16) enables microservice communication (e.g., mongodb hostname).
+- Ports: 3000:3000 (frontend), 5000:5000 (backend), 27017:27017 (MongoDB).
+- Reasoning: Ensures isolation and connectivity.
 
 ## 4. Docker Compose Volume Definition
-- **Volumes**:
-  - : Persists MongoDB data for “Add Product” functionality.
-  - , : Syncs code for live development.
-  - : Preserves container dependencies.
-- **Reasoning**: Enables data persistence and developer workflow.
+- Volumes:
+  - app-mongo-data:/data/db: Persists MongoDB data for "Add Product" functionality.
+  - ./client:/app, ./backend:/app: Syncs code for live development.
+  - /app/node_modules: Preserves container dependencies.
+- Reasoning: Enables data persistence and developer workflow.
 
 ## 5. Git Workflow
-- Forked  to .
-- Made ≥10 descriptive commits on  branch (e.g., .gitignore, Dockerfiles, docker-compose, README, Docker Hub push).
-- Used  and  to exclude , logs, and backups.
-- Pushed to  branch of .
+- Forked https://github.com/Mwangi121/yolo.git to https://github.com/nuisance-07/yolo.git.
+- Made >=10 descriptive commits on master branch (e.g., .gitignore, Dockerfiles, docker-compose, README, Docker Hub push).
+- Used .gitignore and .dockerignore to exclude node_modules, logs, and backups.
+- Pushed to master branch of nuisance-07/yolo.
 
 ## 6. Successful Running and Debugging
-- Built and ran with  and .
-- Tested at , verified “Add Product” functionality (file uploads via ) and data persistence.
-- Debugged using  and [].
+- Built and ran with docker compose build and docker compose up -d.
+- Tested at http://localhost:3000, verified "Add Product" functionality (file uploads via /api/products) and data persistence.
+- Debugged using docker compose logs and docker network inspect app-net.
 - Added MongoDB healthcheck for reliable backend startup.
 
 ## 7. Good Practices
-- **Image Naming**: ,  (semantic versioning).
-- **Optimization**: Used , layer caching,  flag.
-- **Compose**: Clear service names, named volumes, healthcheck.
+- Image Naming: mwas121/yolo-client:1.0.0, mwas121/yolo-backend:1.0.0 (semantic versioning).
+- Optimization: Used .dockerignore, layer caching, --production flag.
+- Compose: Clear service names, named volumes, healthcheck.
 
 ## 8. Docker Hub Screenshot
-- Pushed images to Docker Hub (, ).
-- Included  showing image versions.
+- Pushed images to Docker Hub[](https://hub.docker.com/u/mwas121) with mwas121/yolo-client:1.0.0, mwas121/yolo-backend:1.0.0.
+- Included dockerhub-screenshot.png showing image versions.
