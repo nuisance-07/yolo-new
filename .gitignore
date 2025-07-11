@@ -1,9 +1,7 @@
-app-mongo-data
-app-mongo-data/
-vars.yml
-vault.yml
-.vagrant/
-.vscode/
-.vscode
-.vscode/*
-.vscode/*.json
+node_modules/
+*.log
+.DS_Store
+*.env
+client/Dockerfile.bak
+backend/Dockerfile.bak
+docker-compose.yaml.bak
