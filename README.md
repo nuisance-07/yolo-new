@@ -1,15 +1,60 @@
-# Overview
-This project involved the containerization and deployment of a full-stack yolo application using Docker.
+# Yolo E-Commerce Application
 
+## Overview
+This project is a full-stack e-commerce application built with the MERN stack (MongoDB, Express.js, React, Node.js). It is containerized using Docker to enable microservices, with a custom bridge network and persistent MongoDB storage for the “Add Product” functionality.
 
-# Requirements
-Install the docker engine here:
-- [Docker](https://docs.docker.com/engine/install/) 
+## Requirements
+- [Docker](https://docs.docker.com/engine/install/) with  plugin.
+- [Git](https://git-scm.com/downloads).
 
-## How to launch the application 
+## Project Structure
+```
+yolo/
+├── client/                # React frontend
+│   ├── Dockerfile         # Frontend Dockerfile
+│   ├── package.json       # Frontend dependencies
+│   ├── src/              # React source code
+├── backend/               # Express.js backend
+│   ├── Dockerfile         # Backend Dockerfile
+│   ├── package.json       # Backend dependencies
+│   ├── server.js         # Backend entry point
+│   ├── routes/           # API routes
+├── docker-compose.yaml    # Orchestrates microservices
+├── explanation.md         # Implementation details
+├── dockerhub-screenshot.png # Docker Hub screenshot
+```
 
+## Setup Instructions
+1. **Clone the Repository**:
+   
 
-![Alt text](image.png)
+2. **Build and Run with Docker Compose**:
+   
 
-## How to run the app
-Use vagrant up --provison command
+3. **Access the Application**:
+   - Frontend: 
+   - Backend API: 
+   - MongoDB:  (database: )
+
+4. **Test the Application**:
+   - Open  in a browser.
+   - Use the “Add Product” form (supports file uploads via ) to add products.
+   - Verify data persistence:
+     
+   - Check MongoDB data:
+     
+
+5. **Debugging**:
+   - View logs:
+     
+   - Check network:
+     
+
+## Docker Images
+- Frontend:  (~200MB)
+- Backend:  (~200MB)
+- MongoDB: 
+- Total size (frontend + backend): <400MB (optimized with  and ).
+
+## Docker Hub
+Images are pushed to [Docker Hub](https://hub.docker.com/u/mwas121). See  for verification.
