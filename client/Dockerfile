@@ -1,4 +1,3 @@
-# Build stage
 FROM node:14-slim AS build
 
 WORKDIR /app
@@ -7,7 +6,6 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Serve using Nginx (much smaller than running `npm start`)
 FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
 
