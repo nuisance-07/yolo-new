@@ -1,5 +1,5 @@
 # Use a lightweight Node.js base image
-FROM node:13-alpine
+FROM node:14-alpine
 
 # Set working directory
 WORKDIR /app
@@ -13,8 +13,11 @@ RUN npm install --production
 # Copy application code
 COPY . .
 
-# Expose port
-EXPOSE 3000
+# Build the React app
+RUN npm run build
 
-# Start the application
-CMD ["npm", "start"]
+# Serve with a lightweight server
+FROM nginx:alpine
+COPY --from=0 /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
