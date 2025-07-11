@@ -1,20 +1,14 @@
-# Use a lightweight Node.js base image
-FROM node:13-alpine
+FROM node:14-slim
 
-# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json for caching
 COPY package*.json ./
+RUN npm install --only=production
 
-# Install only production dependencies to minimize size
-RUN npm install --production
-
-# Copy application code
 COPY . .
 
-# Expose port
+ENV NODE_ENV=production
+
 EXPOSE 5000
 
-# Start the application
 CMD ["node", "server.js"]

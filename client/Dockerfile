@@ -1,23 +1,15 @@
-# Use a lightweight Node.js base image
-FROM node:13-alpine
+# Build stage
+FROM node:14-slim AS build
 
-# Set working directory
 WORKDIR /app
-
-# Copy package.json and package-lock.json for caching
 COPY package*.json ./
-
-# Install only production dependencies to minimize size
-RUN npm install --production
-
-# Copy application code
+RUN npm install
 COPY . .
-
-# Build the React app
 RUN npm run build
 
-# Serve with a lightweight server
+# Serve using Nginx (much smaller than running `npm start`)
 FROM nginx:alpine
-COPY --from=0 /app/build /usr/share/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html
+
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
