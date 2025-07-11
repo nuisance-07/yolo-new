@@ -3,7 +3,7 @@ services:
     image: mwas121/yolo-client:1.0.0
     container_name: yolo-client
     ports:
-      - "3000:3000"
+      - "3000:80"
     volumes:
       - ./client:/app
       - /app/node_modules
@@ -11,8 +11,6 @@ services:
       - backend
     networks:
       - app-net
-    stdin_open: true
-    tty: true
 
   backend:
     image: mwas121/yolo-backend:1.0.0
