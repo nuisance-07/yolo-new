@@ -1,57 +1,40 @@
-services:
-  frontend:
-    image: mwas121/yolo-client:1.0.0
-    container_name: yolo-client
-    ports:
-      - "3000:80"
-    volumes:
-      - ./client:/app
-      - /app/node_modules
-    depends_on:
-      - backend
-    networks:
-      - app-net
 
-  backend:
-    image: mwas121/yolo-backend:1.0.0
-    container_name: yolo-backend
+services:
+  yolo-client:
+    container_name: container-ya-frontend
+    image: mwas121/yolo-client:1.0.0
+    build: ./client
+    ports:
+      - "3000:3000"
+    networks:
+      - yolo-net
+    depends_on:
+      - yolo-backend
+
+  yolo-backend:
+    container_name: container-ya-backend
+    image: mwas121/yolo-backend:1.0.0.0
+    build: ./backend
     ports:
       - "5000:5000"
-    volumes:
-      - ./backend:/app
-      - /app/node_modules
-    environment:
-      - MONGODB_URI=mongodb://mongodb:27017/yolomy
-    depends_on:
-      mongodb:
-        condition: service_healthy
     networks:
-      - app-net
-    restart: always
+      - yolo-net
+    depends_on:
+      - mongo
 
-  mongodb:
-    image: mongo:latest
-    container_name: yolo-mongo
+  mongo:
+    container_name: container-ya-mongo
+    image: mongo
     ports:
       - "27017:27017"
-    volumes:
-      - app-mongo-data:/data/db
     networks:
-      - app-net
-    healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+      - yolo-net
+    volumes:
+      - mongo-data:/data/db
 
 networks:
-  app-net:
+  yolo-net:
     driver: bridge
-    ipam:
-      config:
-        - subnet: 172.20.0.0/16
-          ip_range: 172.20.0.0/16
 
 volumes:
-  app-mongo-data:
-    driver: local
+  mongo-data:
