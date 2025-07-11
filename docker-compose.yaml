@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   frontend:
     image: mwas121/yolo-client:1.0.0
