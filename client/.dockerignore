@@ -5,3 +5,5 @@ npm-debug.log
 *.md
 *.env
 Dockerfile.bak
+build/
+dist/
