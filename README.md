@@ -54,7 +54,7 @@ yolo/
 - Frontend:  (~200MB)
 - Backend:  (~200MB)
 - MongoDB: 
-- Total size (frontend + backend): <400MB (optimized with  and ).
+- Total size (frontend + backend): <400MB (optimized with node:14 alpine and --production).
 
 ## Docker Hub
 Images are pushed to [Docker Hub](https://hub.docker.com/u/mwas121). See  for verification.
