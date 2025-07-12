@@ -22,6 +22,11 @@ yolo-new/
 ├── docker-compose.yaml    # Orchestrates microservices
 ├── explanation.md         # Implementation details
 ├── dockerhub-screenshot.png # Docker Hub screenshot
+├── image.png              # Additional screenshot
+├── Screenshot from 2025-07-11 20-43-06.png # Additional screenshot
+├── Screenshot from 2025-07-12 10-21-19.png # Additional screenshot
+├── Screenshot from 2025-07-12 10-21-48.png # Additional screenshot
+├── Screenshot from 2025-07-12 11-22-35.png # Additional screenshot
 ```
 
 ## Setup Instructions
