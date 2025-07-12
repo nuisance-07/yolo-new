@@ -31,7 +31,7 @@ services:
 
   mongo:
     container_name: container-ya-mongo
-    image: mongo:latest
+    image: mongo:4.4
     ports:
       - "27017:27017"
     volumes:
@@ -40,9 +40,9 @@ services:
       - yolo-net
     healthcheck:
       test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+      interval: 15s
+      timeout: 10s
+      retries: 5
 
 networks:
   yolo-net:
