@@ -1,11 +1,13 @@
-
 services:
   yolo-client:
     container_name: container-ya-frontend
     image: mwas121/yolo-client:1.0.0
     build: ./client
     ports:
-      - "3000:3000"
+      - "3000:80"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
     networks:
       - yolo-net
     depends_on:
@@ -13,24 +15,34 @@ services:
 
   yolo-backend:
     container_name: container-ya-backend
-    image: mwas121/yolo-backend:1.0.0.0
+    image: mwas121/yolo-backend:1.0.0
     build: ./backend
     ports:
       - "5000:5000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
     networks:
       - yolo-net
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
+    restart: always
 
   mongo:
     container_name: container-ya-mongo
-    image: mongo
+    image: mongo:latest
     ports:
       - "27017:27017"
-    networks:
-      - yolo-net
     volumes:
       - mongo-data:/data/db
+    networks:
+      - yolo-net
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
 networks:
   yolo-net:
@@ -38,3 +50,4 @@ networks:
 
 volumes:
   mongo-data:
+    driver: local
