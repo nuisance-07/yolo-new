@@ -39,7 +39,7 @@ services:
     networks:
       - yolo-net
     healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 15s
       timeout: 10s
       retries: 5
