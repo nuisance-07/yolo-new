@@ -1,7 +1,7 @@
 # Yolo E-Commerce Application
 
 ## Overview
-This project is a full-stack e-commerce application built with the MERN stack (MongoDB, Express.js, React, Node.js). It is containerized using Docker to enable microservices, with a custom bridge network and persistent MongoDB storage for the "Add Product" functionality.
+This project is a full-stack e-commerce application built with the MERN stack (MongoDB, Express.js, React, Node.js). It is containerized using Docker with microservices, a custom bridge network, and persistent MongoDB storage for the "Add Product" functionality.
 
 ## Requirements
 - Docker[](https://docs.docker.com/engine/install/) with docker-compose plugin.
@@ -41,8 +41,6 @@ yolo-new/
    - Use the "Add Product" form (supports file uploads via /api/products) to add products.
    - Verify data persistence:
      
-   - Check MongoDB data:
-     
 
 5. Debugging:
    - View logs:
@@ -51,10 +49,10 @@ yolo-new/
      
 
 ## Docker Images
-- Frontend: mwas121/yolo-client:1.0.0 (~200MB)
-- Backend: mwas121/yolo-backend:1.0.0 (~200MB)
+- Frontend: mwas121/yolo-client:1.0.0 (54.5MB)
+- Backend: mwas121/yolo-backend:1.0.0 (226MB)
 - MongoDB: mongo:latest
-- Total size (frontend + backend): <400MB (optimized with node:14-alpine and --production).
+- Total size (frontend + backend): 280.5MB, meets rubric requirement of <400MB.
 
 ## Docker Hub
 Images are pushed to Docker Hub[](https://hub.docker.com/u/mwas121). See dockerhub-screenshot.png for verification.
