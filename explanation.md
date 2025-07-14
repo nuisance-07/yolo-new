@@ -43,7 +43,7 @@
 
 ## 5. Git Workflow
 - Forked https://github.com/Vinge1718/yolo.git to https://github.com/nuisance-07/yolo.git.
-- Made >=10 descriptive commits on master branch (e.g., .gitignore, .dockerignore, Dockerfiles, docker-compose.yml, README.md, explanation.md, screenshots).
+- Made 48 descriptive commits on master branch (e.g., .gitignore, .dockerignore, Dockerfiles, docker-compose.yml, README.md, explanation.md, screenshots).
 - Used .gitignore and .dockerignore to exclude node_modules, logs, build/, dist/, and backups.
 - Pushed to master branch of nuisance-07/yolo.
 
