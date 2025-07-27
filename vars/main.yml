@@ -13,7 +13,6 @@ backend_container:
   name: "container-ya-backend"
   image: "mwas121/yolo-backend:1.0.0"
   port_mapping: "5000:5000"
-  volume_mapping: "{{ repo_dest }}/backend:/app"
   env_vars:
     MONGO_URL: "mongodb://container-ya-mongo:27017/yolomy"
   network: "yolo-net"

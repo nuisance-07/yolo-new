@@ -25,8 +25,6 @@
     state: started
     restart_policy: always
     ports: "{{ backend_container.port_mapping }}"
-    volumes:
-      - "{{ backend_container.volume_mapping }}"
     env: "{{ backend_container.env_vars }}"
     networks:
       - name: "{{ backend_container.network }}"
