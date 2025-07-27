@@ -15,7 +15,7 @@
       interval: 15s
       timeout: 10s
       retries: 5
-  become: yes
+  become: true
   tags:
     - deploy-mongo
 - name: Run backend container
@@ -35,6 +35,6 @@
       interval: 15s
       timeout: 10s
       retries: 5
-  become: yes
+  become: true
   tags:
     - deploy-backend
