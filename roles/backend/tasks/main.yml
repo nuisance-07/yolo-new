@@ -15,7 +15,7 @@
       interval: 15s
       timeout: 10s
       retries: 5
-  become: yes
+  become: true
   tags:
     - deploy-mongo
 - name: Run backend container
@@ -25,9 +25,11 @@
     state: started
     restart_policy: always
     ports: "{{ backend_container.port_mapping }}"
+    volumes:
+      - "{{ backend_container.volume_mapping }}"
     env: "{{ backend_container.env_vars }}"
     networks:
       - name: "{{ backend_container.network }}"
-  become: yes
+  become: true
   tags:
     - deploy-backend
