@@ -15,7 +15,7 @@
       interval: 15s
       timeout: 10s
       retries: 5
-  become: true
+  become: yes
   tags:
     - deploy-mongo
 - name: Run backend container
@@ -27,14 +27,9 @@
     ports: "{{ backend_container.port_mapping }}"
     volumes:
       - "{{ backend_container.volume_mapping }}"
-      - "{{ repo_dest }}/backend/node_modules:/app/node_modules"
+    env: "{{ backend_container.env_vars }}"
     networks:
       - name: "{{ backend_container.network }}"
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:5000/api/products || exit 1"]
-      interval: 15s
-      timeout: 10s
-      retries: 5
-  become: true
+  become: yes
   tags:
     - deploy-backend
