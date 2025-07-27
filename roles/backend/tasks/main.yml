@@ -1,0 +1,43 @@
+---
+- name: Run MongoDB container
+  docker_container:
+    name: "{{ db_container.name }}"
+    image: "{{ db_container.image }}"
+    state: started
+    restart_policy: always
+    ports: "{{ db_container.port_mapping }}"
+    volumes: "{{ db_container.volume_mapping }}"
+    env: "{{ db_container.env_vars }}"
+    networks:
+      - name: "{{ db_container.network }}"
+    healthcheck:
+      test: ["CMD", "mongo", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+  become: true
+  tags:
+    - deploy-mongo
+
+- name: Run backend container
+  docker_container:
+    name: "{{ backend_container.name }}"
+    image: "{{ backend_container.image }}"
+    state: started
+    restart_policy: always
+    ports: "{{ backend_container.port_mapping }}"
+    volumes:
+      - "{{ backend_container.volume_mapping }}"
+      - "{{ repo_dest }}/backend/node_modules:/app/node_modules"
+    networks:
+      - name: "{{ backend_container.network }}"
+    depends_on:
+      - "{{ backend_container.depends_on }}"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5000/api/products || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+  become: true
+  tags:
+    - deploy-backend
