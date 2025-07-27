@@ -61,3 +61,24 @@
 ## 8. Docker Hub Screenshot
 - Pushed images to Docker Hub[](https://hub.docker.com/u/mwas121) with mwas121/yolo-client:1.0.0 and mwas121/yolo-backend:1.0.0.
 - Included dockerhub-screenshot.png showing image versions, along with additional screenshots (image.png, Screenshot from 2025-07-12 11-22-55.png, Screenshot from 2025-07-12 11-23-09.png).
+## July 28, 2025 - Ansible Deployment Fixes and Validation
+- **Issue**: Playbook failed due to undefined `volume_mapping` in `roles/backend/tasks/main.yml`.
+  - **Fix**: Removed `volumes` field from backend task in `roles/backend/tasks/main.yml`.
+- **Issue**: Incomplete `vars/main.yml` due to repeated typos, missing `MONGO_URL` and other fields.
+  - **Fix**: Updated `vars/main.yml` with complete configuration, including `MONGO_URL: mongodb://container-ya-mongo:27017/yolomy`, `db_container`, and `network_name`.
+- **Deployment**: Executed full playbook (`ansible-playbook -i inventory.yml playbook.yml`), completing 12 tasks with 9 changed, deploying:
+  - Git, Docker, and dependencies.
+  - Cloned repository at `/home/vagrant/yolo`.
+  - `yolo-net` bridge network.
+  - Containers: `container-ya-frontend` (port 3000), `container-ya-backend` (port 5000), `container-ya-mongo` (port 27017).
+- **Verification**:
+  - Confirmed all containers running (`docker ps -a`).
+  - Verified `yolo-net` network (`docker network ls`).
+  - Checked repository structure (`ls -l /home/vagrant/yolo`).
+  - Backend logs show `Server listening on port 5000`.
+  - Frontend accessible at `http://localhost:3000`.
+- **Pending**:
+  - Test backend API (`curl -f http://localhost:5000/api/products`) to verify MongoDB connectivity and data retrieval.
+  - Confirm frontend fetches product data in browser at `http://localhost:3000`.
+- **Git Workflow**: Committed changes with messages like "Ensure vars/main.yml includes MONGO_URL and all required fields".
+- **Cleanup**: Removed unused files in `/home/vagrant/yolo` (confirmed none remained).
