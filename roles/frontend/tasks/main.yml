@@ -1,0 +1,34 @@
+---
+- name: Clone the repository
+  git:
+    repo: "{{ repo_url }}"
+    dest: "{{ repo_dest }}"
+    version: master
+    force: yes
+  become: yes
+  become_user: vagrant
+  tags:
+    - setup-repo
+- name: Create Docker network
+  docker_network:
+    name: "{{ network_name }}"
+    state: present
+  become: yes
+  tags:
+    - setup-network
+- name: Run frontend container
+  docker_container:
+    name: "{{ frontend_container.name }}"
+    image: "{{ frontend_container.image }}"
+    state: started
+    restart_policy: always
+    ports: "{{ frontend_container.port_mapping }}"
+    volumes:
+      - "{{ frontend_container.volume_mapping }}"
+      - "{{ repo_dest }}/client/node_modules:/app/node_modules"
+    env: "{{ frontend_container.env_vars }}"
+    networks:
+      - name: "{{ frontend_container.network }}"
+  become: yes
+  tags:
+    - deploy-frontend
