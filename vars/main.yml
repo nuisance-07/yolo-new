@@ -1,15 +1,13 @@
 ---
-# Repository details
 repo_url: "https://github.com/nuisance-07/yolo.git"
 repo_dest: "/home/vagrant/yolo"
-# Docker container settings
 frontend_container:
   name: "container-ya-frontend"
   image: "mwas121/yolo-client:1.0.0"
   port_mapping: "3000:80"
   volume_mapping: "{{ repo_dest }}/client:/app"
   env_vars:
-    REACT_APP_API_URL: "http://192.168.56.3:5000/api/products"
+    REACT_APP_API_URL: "http://container-ya-backend:5000/api/products"
   network: "yolo-net"
 backend_container:
   name: "container-ya-backend"
@@ -17,7 +15,6 @@ backend_container:
   port_mapping: "5000:5000"
   volume_mapping: "{{ repo_dest }}/backend:/app"
   network: "yolo-net"
-  depends_on: "container-ya-mongo"
 db_container:
   name: "container-ya-mongo"
   image: "mongo:4.4"
@@ -26,5 +23,4 @@ db_container:
   env_vars:
     MONGO_INITDB_DATABASE: "yolomy"
   network: "yolo-net"
-# Docker network
 network_name: "yolo-net"
