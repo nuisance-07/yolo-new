@@ -89,3 +89,31 @@
     - Used `vagrant up --provider=virtualbox` to start the VM.
     - Loaded VirtualBox kernel modules: `sudo modprobe vboxdrv`.
     - Verified provider with `vagrant status` (confirmed `provider: virtualbox`).
+
+## Ansible Playbook Execution Order and Role Details
+- **Execution Order**: The playbook (`playbook.yml`) runs sequentially, ensuring dependencies are met before deploying containers. Tasks are grouped into roles (`common`, `frontend`, `backend`) executed in this order to set up the environment, clone the repository, create the network, and deploy containers.
+- **Roles and Functions**:
+  - **common**: Prepares the Vagrant VM environment.
+    - **Purpose**: Installs prerequisites (Git, Docker, etc.) and configures the Docker service and user permissions.
+    - **Positioning**: Runs first to ensure the VM has the necessary tools before cloning the repository or deploying containers.
+    - **Tasks and Modules**:
+      - `Install Git`: Uses the `apt` module to install Git (`git`) for cloning the repository.
+      - `Add Docker GPG apt key`: Uses the `apt_key` module to add Docker’s GPG key for secure package installation.
+      - `Add Docker repository`: Uses the `apt_repository` module to configure the Docker repository.
+      - `Install Docker and dependencies`: Uses the `apt` module to install Docker packages (`docker.io`, etc.).
+      - `Ensure Docker service is running`: Uses the `service` module to start and enable the Docker service.
+      - `Add vagrant user to docker group`: Uses the `user` module to add the `vagrant` user to the `docker` group for permissionless Docker commands.
+  - **frontend**: Deploys the frontend service and supporting components.
+    - **Purpose**: Clones the repository and runs the `container-ya-frontend` container.
+    - **Positioning**: Runs after `common` to use Git and Docker. The network is created before the frontend container to ensure connectivity.
+    - **Tasks and Modules**:
+      - `Clone the repository`: Uses the `git` module to clone `https://github.com/nuisance-07/yolo.git` to `/home/vagrant/yolo`.
+      - `Create Docker network`: Uses the `docker_network` module to create the `yolo-net` bridge network.
+      - `Run frontend container`: Uses the `docker_container` module to deploy `container-ya-frontend` with `mwas121/yolo-client:1.0.0`, mapping port `3000:80`, setting `REACT_APP_API_URL`, and connecting to `yolo-net`.
+  - **backend**: Deploys the MongoDB and backend services.
+    - **Purpose**: Runs `container-ya-mongo` and `container-ya-backend`, ensuring database availability before the backend starts.
+    - **Positioning**: Runs last, as the backend depends on the repository (cloned by `frontend`) and the `yolo-net` network. MongoDB is deployed before the backend for connectivity.
+    - **Tasks and Modules**:
+      - `Run MongoDB container`: Uses the `docker_container` module to deploy `container-ya-mongo` with `mongo:4.4`, mapping port `27017:27017`, setting volume `mongo-data:/data/db`, and connecting to `yolo-net`. Includes a healthcheck using `mongo --quiet --eval "db.adminCommand('ping')"`.
+      - `Run backend container`: Uses the `docker_container` module to deploy `container-ya-backend` with `mwas121/yolo-backend:1.0.0`, mapping port `5000:5000`, setting `MONGO_URL`, and connecting to `yolo-net`.
+- **Reasoning**: The sequential order ensures prerequisites (Git, Docker) are installed first (`common`), followed by repository cloning and network creation (`frontend`), and finally database and backend deployment (`backend`). This avoids dependency issues (e.g., backend needing MongoDB, frontend needing the repository).
