@@ -82,3 +82,10 @@
   - Confirm frontend fetches product data in browser at `http://localhost:3000`.
 - **Git Workflow**: Committed changes with messages like "Ensure vars/main.yml includes MONGO_URL and all required fields".
 - **Cleanup**: Removed unused files in `/home/vagrant/yolo` (confirmed none remained).
+
+- **Issue**: Vagrant attempted to use KVM (libvirt) provider, causing kernel extension errors.
+  - **Fix**: Switched to VirtualBox provider:
+    - Installed VirtualBox: `sudo apt install virtualbox`.
+    - Used `vagrant up --provider=virtualbox` to start the VM.
+    - Loaded VirtualBox kernel modules: `sudo modprobe vboxdrv`.
+    - Verified provider with `vagrant status` (confirmed `provider: virtualbox`).

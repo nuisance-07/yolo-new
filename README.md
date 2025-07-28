@@ -80,3 +80,9 @@ Images are pushed to Docker Hub[](https://hub.docker.com/u/mwas121). See dockerh
   - Verify frontend displays product data at `http://localhost:3000`.
 - Committed changes to Git with messages like "Ensure vars/main.yml includes MONGO_URL and all required fields".
 - Cleaned up unused files in `/home/vagrant/yolo` (e.g., `backend-deployment.yaml`).
+
+  - Fixed Vagrant provider issue by switching from KVM (libvirt) to VirtualBox:
+    - Installed VirtualBox: `sudo apt install virtualbox`.
+    - Ran `vagrant up --provider=virtualbox` to use VirtualBox instead of KVM.
+    - Ensured VirtualBox kernel modules were loaded: `sudo modprobe vboxdrv`.
+    - Verified provider: `vagrant status` (shows `provider: virtualbox`).
