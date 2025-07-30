@@ -1,56 +1,36 @@
 version: "3.8"
 
 services:
-  yolo-client:
-    container_name: container-ya-frontend
-    image: mwas121/yolo-client:1.0.0
-    build: ./client
-    ports:
-      - "3000:80"
-    volumes:
-      - ./client:/app
-      - /app/node_modules
-    networks:
-      - yolo-net
-    depends_on:
-      - yolo-backend
-
-  yolo-backend:
-    container_name: container-ya-backend
-    image: mwas121/yolo-backend:1.0.0
-    build: ./backend
-    ports:
-      - "5000:5000"
-    volumes:
-      - ./backend:/app
-      - /app/node_modules
-    networks:
-      - yolo-net
-    depends_on:
-      mongo:
-        condition: service_healthy
-    restart: always
-
   mongo:
-    container_name: container-ya-mongo
     image: mongo:4.4
+    container_name: container-ya-mongo
     ports:
       - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
     networks:
       - yolo-net
-    healthcheck:
-      test: ["CMD", "mongo", "--quiet", "--eval", "db.adminCommand('ping')"]
-      interval: 15s
-      timeout: 10s
-      retries: 5
+
+  backend:
+    image: mwas121/yolo-backend:1.0.0
+    container_name: container-ya-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/yolo
+    depends_on:
+      - mongo
+    networks:
+      - yolo-net
+
+  frontend:
+    image: mwas121/yolo-client:1.0.0
+    container_name: container-ya-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - yolo-net
 
 networks:
   yolo-net:
-    name: yolo-net        # 👈 Explicit name to match what Ansible expects
     driver: bridge
-
-volumes:
-  mongo-data:
-    driver: local
