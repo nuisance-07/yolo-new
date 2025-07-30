@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   yolo-client:
     container_name: container-ya-frontend
@@ -46,6 +48,7 @@ services:
 
 networks:
   yolo-net:
+    name: yolo-net        # 👈 Explicit name to match what Ansible expects
     driver: bridge
 
 volumes:
