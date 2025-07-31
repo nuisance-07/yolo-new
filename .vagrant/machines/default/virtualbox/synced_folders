@@ -1,1 +1,1 @@
-{"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/collins/yolo-new","disabled":false,"__vagrantfile":true}}}
+{"virtualbox":{"/home/vagrant/yolo":{"guestpath":"/home/vagrant/yolo","hostpath":"/home/collins/yolo-new","disabled":false,"__vagrantfile":true}}}
