@@ -1,8 +1,8 @@
 ---
 - name: Clone the repository
   git:
-    repo: "{{ repo_url }}"
-    dest: "{{ repo_dest }}"
+    repo: "{{ repo_url | default('https://github.com/nuisance-07/yolo.git') }}"
+    dest: "{{ repo_dest | default('/home/vagrant/yolo') }}"
     version: master
     force: yes
   become: true
@@ -11,7 +11,7 @@
     - setup-repo
 - name: Create Docker network
   docker_network:
-    name: "{{ network_name }}"
+    name: "{{ network_name | default('yolo-net') }}"
     state: present
   become: true
   tags:
@@ -25,7 +25,7 @@
     ports: "{{ frontend_container.port_mapping }}"
     volumes:
       - "{{ frontend_container.volume_mapping }}"
-      - "{{ repo_dest }}/client/node_modules:/app/node_modules"
+      - "{{ repo_dest | default('/home/vagrant/yolo') }}/client/node_modules:/app/node_modules"
     env: "{{ frontend_container.env_vars }}"
     networks:
       - name: "{{ frontend_container.network }}"
