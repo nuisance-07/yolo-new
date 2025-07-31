@@ -1,4 +1,3 @@
----
 - name: Deploy e-commerce application
   hosts: ecommerce-server
   become: true
@@ -6,5 +5,5 @@
     - vars/main.yml
   roles:
     - common
-    - frontend
     - backend
+    - frontend-deployment

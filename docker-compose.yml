@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   mongo:
     image: mongo:4.4
@@ -8,19 +6,21 @@ services:
       - "27017:27017"
     networks:
       - yolo-net
-
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=yolomy
   backend:
     image: mwas121/yolo-backend:1.0.0
     container_name: container-ya-backend
     ports:
       - "5000:5000"
     environment:
-      - MONGO_URL=mongodb://mongo:27017/yolo
+      - MONGO_URL=mongodb://container-ya-mongo:27017/yolomy
     depends_on:
       - mongo
     networks:
       - yolo-net
-
   frontend:
     image: mwas121/yolo-client:1.0.0
     container_name: container-ya-frontend
@@ -30,7 +30,8 @@ services:
       - backend
     networks:
       - yolo-net
-
 networks:
   yolo-net:
     driver: bridge
+volumes:
+  mongo-data:
