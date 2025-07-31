@@ -131,3 +131,4 @@
         ansible_ssh_private_key_file: /home/collins/yolo-new/.vagrant/machines/default/virtualbox/private_key
         ansible_ssh_common_args: '-o PubkeyAcceptedKeyTypes=+ssh-rsa -o HostKeyAlgorithms=+ssh-rsa'
 
+The Vagrant VM (ecommerce-server) hosts all Docker containers (container-ya-frontend, container-ya-backend, container-ya-mongo) on the yolo-net network. Ansible connects to the VM via SSH to execute tasks, including installing prerequisites, cloning the repository, and deploying containers.
