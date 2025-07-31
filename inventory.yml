@@ -2,7 +2,7 @@ all:
   hosts:
     ecommerce-server:
       ansible_host: 127.0.0.1
-      ansible_port: 2222
+      ansible_port: 2201
       ansible_user: vagrant
       ansible_ssh_private_key_file: /home/collins/yolo-new/.vagrant/machines/default/virtualbox/private_key
       ansible_ssh_common_args: '-o PubkeyAcceptedKeyTypes=+ssh-rsa -o HostKeyAlgorithms=+ssh-rsa'
