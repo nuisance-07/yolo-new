@@ -1,21 +1,18 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
 Vagrant.configure("2") do |config|
   config.vm.box = "geerlingguy/ubuntu2004"
   config.vm.hostname = "ecommerce-server"
-  config.vm.network "private_network", type: "dhcp"
-  config.vm.network "forwarded_port", guest: 3000, host: 3000
-  config.vm.network "forwarded_port", guest: 5000, host: 5001  # Changed host port to avoid collision
-  config.vm.network "forwarded_port", guest: 27017, host: 27017
-  
+  config.vm.network "forwarded_port", guest: 3000, host: 3000, host_ip: "127.0.0.1"
+  config.vm.network "forwarded_port", guest: 5000, host: 5001, host_ip: "127.0.0.1"
+  config.vm.network "forwarded_port", guest: 27017, host: 27017, host_ip: "127.0.0.1"
+  config.vm.network "private_network", ip: "192.168.56.3"
+  config.vm.synced_folder ".", "/home/vagrant/yolo"
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = "2048"
+    vb.memory = 2048
     vb.cpus = 2
+    
   end
-
-  config.vm.provision "shell", inline: <<-SHELL
-    sudo apt-get update
-    sudo apt-get install -y python3
-  SHELL
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "playbook.yml"
+    # ansible.verbose = "vvv"
+  end
 end
