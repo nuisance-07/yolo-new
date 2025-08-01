@@ -130,23 +130,4 @@ Inventory Configuration: The inventory file (inventory.yml) defines the target h
       ansible_ssh_private_key_file: /home/collins/yolo-new/.vagrant/machines/default/virtualbox/private_key
       ansible_ssh_common_args: '-o PubkeyAcceptedKeyTypes=+ssh-rsa -o HostKeyAlgorithms=+ssh-rsa'
 
-
-Reasoning: The Vagrant VM (ecommerce-server) hosts all Docker containers (container-ya-frontend, container-ya-backend, container-ya-mongo) on the yolo-net network. Ansible connects to the VM via SSH to execute tasks, including installing prerequisites, cloning the repository, and deploying containers.
-Verification:cat inventory.yml  # Shows the above configuration
-vagrant ssh -c "hostname"  # Returns ecommerce-server or default
-vagrant ssh -c "ip addr show | grep 192.168.56"  
-
-
-
-Stage 2: Ansible Orchestration
-
-Overview: Stage 2 orchestrates the Yolo E-Commerce Application using Ansible in the stage-two branch, ensuring all containers are deployed and functional on the ecommerce-server VM.
-Files Used:
-inventory.yml: Defines the target host.
-playbook.yml: Executes deployment tasks.
-vars/main.yml: Configures container settings.
-roles/: Includes roles (common, frontend-deployment, backend-deployment, setup-mongodb) for setup and deployment.
-docker-compose.yml: Defines container orchestration (if used).
-
-
-Verification: Ran tests to confirm POST, GET, data persistence with mongo-data volume, and frontend display at http://localhost:3000.
+The Vagrant VM (ecommerce-server) hosts all Docker containers (container-ya-frontend, container-ya-backend, container-ya-mongo) on the yolo-net network. Ansible connects to the VM via SSH to execute tasks, including installing prerequisites, cloning the repository, and deploying containers.
