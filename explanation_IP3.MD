@@ -42,7 +42,8 @@ vagrant ssh -c "ip addr show | grep 192.168.56"
 
 Expected: ecommerce-server, 192.168.56.3.
 Screenshot:
-
+![alt text]
+(<Screenshot from 2025-08-01 04-15-35.png>)
 
 
 Playbook Setup
@@ -63,7 +64,8 @@ Verification:cat inventory.yml
 
 
 Screenshot:
-
+![alt text]
+(<Screenshot from 2025-08-01 04-10-49.png>)
 
 
 
@@ -85,7 +87,8 @@ Verification:cat playbook.yml
 
 
 Screenshot:
-
+![alt text]
+(<Screenshot from 2025-08-01 04-11-15.png>)
 
 
 
@@ -122,6 +125,9 @@ Verification:cat vars/main.yml
 
 
 Screenshot:
+![alt text]
+(<Screenshot from 2025-08-01 04-12-01.png>)
+
 
 
 
@@ -136,15 +142,18 @@ ansible-playbook -i inventory.yml playbook.yml
 
 
 Screenshot:
-
-
+![alt text]
+(<Screenshot from 2025-08-01 04-13-08.png>)
+![alt text]
+(<Screenshot from 2025-08-01 04-13-23.png>)
 Step 2: Verify Containers:
 vagrant ssh -c "docker ps"
 
 
 Expected: Shows container-ya-frontend, container-ya-backend, container-ya-mongo.
 Screenshot:
-
+![alt text]
+(<Screenshot from 2025-08-01 04-13-58.png>)
 
 
 
@@ -154,6 +163,8 @@ vagrant ssh -c "docker stop container-ya-mongo && docker start container-ya-mong
 
 Expected: container-ya-mongo stops and starts.
 Screenshot:
+![alt text]
+(<Screenshot from 2025-08-01 04-15-35.png>)
 
 
 
@@ -166,4 +177,6 @@ echo "Open http://localhost:3000 in a browser"
 
 Expected: 
 Screenshot:
-
+![
+    
+](<Screenshot from 2025-08-01 04-14-40.png>)
