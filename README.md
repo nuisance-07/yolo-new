@@ -65,24 +65,4 @@ yolo-new/
 
 ## Docker Hub
 Images are pushed to Docker Hub[](https://hub.docker.com/u/mwas121). See dockerhub-screenshot.png for verification of mwas121/yolo-client:1.0.0 and mwas121/yolo-backend:1.0.0.
-## Update - July 28, 2025
-- Corrected `vars/main.yml` to include `MONGO_URL: mongodb://container-ya-mongo:27017/yolomy` and complete configuration for frontend, backend, and MongoDB containers.
-- Fixed `roles/backend/tasks/main.yml` by removing undefined `volume_mapping` reference, resolving playbook errors.
-- Ran full Ansible playbook (`ansible-playbook -i inventory.yml playbook.yml`), successfully deploying all components: Git, Docker, repository, `yolo-net` network, and containers (`container-ya-frontend`, `container-ya-backend`, `container-ya-mongo`).
-- Verified deployment:
-  - All containers running (`docker ps -a`).
-  - `yolo-net` network confirmed (`docker network ls`).
-  - Repository cloned at `/home/vagrant/yolo` with `backend` and `client` directories.
-  - Backend stable with `Server listening on port 5000` in logs.
-  - Frontend accessible at `http://localhost:3000`.
-- Pending tasks:
-  - Test backend API (`curl -f http://localhost:5000/api/products`) to confirm MongoDB connectivity and data retrieval.
-  - Verify frontend displays product data at `http://localhost:3000`.
-- Committed changes to Git with messages like "Ensure vars/main.yml includes MONGO_URL and all required fields".
-- Cleaned up unused files in `/home/vagrant/yolo` (e.g., `backend-deployment.yaml`).
 
-  - Fixed Vagrant provider issue by switching from KVM (libvirt) to VirtualBox:
-    - Installed VirtualBox: `sudo apt install virtualbox`.
-    - Ran `vagrant up --provider=virtualbox` to use VirtualBox instead of KVM.
-    - Ensured VirtualBox kernel modules were loaded: `sudo modprobe vboxdrv`.
-    - Verified provider: `vagrant status` (shows `provider: virtualbox`).
