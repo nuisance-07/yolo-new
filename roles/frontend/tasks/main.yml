@@ -1,3 +1,10 @@
-#SPDX-License-Identifier: MIT-0
----
-# tasks file for roles/frontend
+- name: Run Frontend container
+  docker_container:
+    name: container-ya-frontend
+    image: mwas121/yolo-client:1.0.0
+    state: started
+    restart_policy: always
+    ports:
+      - "3000:80"
+    networks:
+      - name: ecommerce-network

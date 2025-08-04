@@ -1,1 +1,4 @@
-- name: Create Docker network\n  docker_network:\n    name: ecommerce-network\n    state: present
+- name: Create Docker network
+  docker_network:
+    name: ecommerce-network
+    state: present

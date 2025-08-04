@@ -1,1 +1,19 @@
-- name: Create Mongo data directory\n  file:\n    path: /home/vagrant/mongo-data\n    state: directory\n\n- name: Run MongoDB container\n  docker_container:\n    name: container-ya-mongo\n    image: mongo\n    state: started\n    restart_policy: always\n    ports:\n      - \"27017:27017\"\n    volumes:\n      - /home/vagrant/mongo-data:/data/db\n    networks:\n      - name: ecommerce-network
+- name: Create Mongo data volume directory
+  file:
+    path: /home/vagrant/mongo-data
+    state: directory
+
+- name: Run MongoDB container
+  docker_container:
+    name: container-ya-mongo
+    image: mongo:4.4
+    state: started
+    restart_policy: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - /home/vagrant/mongo-data:/data/db
+    networks:
+      - name: ecommerce-network
+    env:
+      MONGO_INITDB_DATABASE: yolomy

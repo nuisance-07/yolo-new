@@ -1,1 +1,7 @@
-- name: Clone the repository\n  git:\n    repo: https://github.com/nuisance-07/yolo-new.git\n    dest: /home/vagrant/yolo\n    clone: yes\n    update: yes
+- name: Clone the repository
+  git:
+    repo: https://github.com/nuisance-07/yolo-new.git
+    dest: /home/vagrant/yolo
+    clone: yes
+    update: yes
+    force: yes
