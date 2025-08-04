@@ -1,3 +1,1 @@
-#SPDX-License-Identifier: MIT-0
----
-# tasks file for roles/mongodb
+- name: Create Mongo data directory\n  file:\n    path: /home/vagrant/mongo-data\n    state: directory\n\n- name: Run MongoDB container\n  docker_container:\n    name: container-ya-mongo\n    image: mongo\n    state: started\n    restart_policy: always\n    ports:\n      - \"27017:27017\"\n    volumes:\n      - /home/vagrant/mongo-data:/data/db\n    networks:\n      - name: ecommerce-network

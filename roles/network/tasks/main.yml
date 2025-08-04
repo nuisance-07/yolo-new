@@ -1,3 +1,1 @@
-#SPDX-License-Identifier: MIT-0
----
-# tasks file for roles/network
+- name: Create Docker network\n  docker_network:\n    name: ecommerce-network\n    state: present

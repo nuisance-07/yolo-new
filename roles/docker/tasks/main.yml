@@ -1,11 +1,1 @@
-- name: Install Docker
-  apt:
-    name: docker.io
-    state: present
-    update_cache: yes
-
-- name: Ensure Docker service is running
-  service:
-    name: docker
-    state: started
-    enabled: yes
+- name: Install Docker\n  apt:\n    name: docker.io\n    state: present\n    update_cache: yes\n\n- name: Ensure Docker service is running\n  service:\n    name: docker\n    state: started\n    enabled: yes
