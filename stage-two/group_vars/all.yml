@@ -1,0 +1,38 @@
+# docker variables
+docker_package_name: docker.io
+docker_service_name: docker
+docker_service_state: started
+docker_service_enabled: true
+
+# network variables
+docker_network_name: yolo-net
+
+# mongodb variables
+mongodb_image_name: mongo
+mongodb_image_tag: latest
+mongodb_container_name: container-ya-mongo
+mongodb_port: 27017
+mongodb_data_dir: /home/vagrant/yolo-mongo-data
+mongodb_network: yolo-net
+
+# clone_repo variables
+repo_url: https://github.com/nuisance-07/yolo-new.git
+repo_dest: /home/vagrant/yolo
+repo_version: stage-two
+
+# backend variables
+backend_build_path: /home/vagrant/yolo/backend
+backend_image_name: nuisance-07/yolo-backend
+backend_image_tag: latest
+backend_container_name: yolo-backend
+backend_network: yolo-net
+backend_port: 5000
+backend_command: node server.js
+
+# frontend variables
+frontend_build_path: /home/vagrant/yolo/client
+frontend_image_name: nuisance-07/yolo-frontend
+frontend_image_tag: latest
+frontend_container_name: yolo-frontend
+frontend_network: yolo-net
+frontend_port: 3000
