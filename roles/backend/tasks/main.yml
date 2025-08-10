@@ -1,0 +1,12 @@
+- name: Run Backend container
+  docker_container:
+    name: container-ya-backend
+    image: mwas121/yolo-server:1.0.0
+    state: started
+    restart_policy: always
+    ports:
+      - "5000:5000"
+    networks:
+      - name: ecommerce-network
+    env:
+      MONGO_URL: mongodb://container-ya-mongo:27017/yolomy
