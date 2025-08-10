@@ -1,3 +1,9 @@
+- name: Build Backend Docker image locally
+  docker_image:
+    path: /home/vagrant/yolo/backend
+    name: mwas121/yolo-server
+    tag: "1.0.0"
+
 - name: Run Backend container
   docker_container:
     name: container-ya-backend
