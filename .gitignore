@@ -3,11 +3,13 @@ node_modules/
 .DS_Store
 *.env
 client/Dockerfile.bak
-backend/Dockerfile.bak
+backend/
+!roles/backend/Dockerfile.bak
 docker-compose.yaml.bak
 .vagrant/
 node_modules/
 *.png
 client/
 backend/
+!roles/backend/
 .vscode/
