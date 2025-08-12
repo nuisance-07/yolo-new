@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yolo-frontend
+  namespace: yolo
+  labels:
+    app: yolo-frontend
+  annotations:
+    version: "1.0.0"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: yolo-frontend
+  template:
+    metadata:
+      labels:
+        app: yolo-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: mwas121/yolo-client:1.0.0
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: yolo-frontend-service
+  namespace: yolo
+  labels:
+    app: yolo-frontend
+  annotations:
+    role: frontend
+spec:
+  selector:
+    app: yolo-frontend
+  ports:
+  - port: 3000
+    targetPort: 80
+  type: LoadBalancer
