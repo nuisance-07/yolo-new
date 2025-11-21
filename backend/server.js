@@ -32,8 +32,11 @@ const app = express();
 // Body parser middleware
 app.use(express.json());
 
+// Serve static files from public/images
+app.use('/images', express.static('public/images'));
+
 // Use multer to parse form-data bodies
-app.use(upload.array());
+// app.use(upload.array());
 
 // Enable CORS
 app.use(cors());
