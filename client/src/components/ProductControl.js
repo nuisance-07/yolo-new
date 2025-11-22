@@ -136,6 +136,9 @@ class ProductControl extends Component {
                                 <option value="Men">Men</option>
                                 <option value="Women">Women</option>
                                 <option value="Kids">Kids</option>
+                                <option value="Watches">Watches</option>
+                                <option value="Jewellery">Jewellery</option>
+                                <option value="Accessories">Accessories</option>
                             </select>
                         </div>
                         <div className="col-md-2">
