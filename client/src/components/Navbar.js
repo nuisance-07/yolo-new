@@ -1,9 +1,10 @@
 import React from 'react';
 import logo from '../images/logo/logo.png';
 import shop from '../images/logo/shop.png';
+import { Link } from 'react-router-dom';
 
-function Navbar () {
-    
+function Navbar() {
+
     return (
         <React.Fragment>
 
@@ -13,7 +14,7 @@ function Navbar () {
 
                     <a className="navbar-brand" href="/">
                         <div className="logo float-md-left">
-                            <img src= {logo} alt="logo" className= "img-fluid"/>
+                            <img src={logo} alt="logo" className="img-fluid" />
                         </div>
                     </a>
 
@@ -26,17 +27,17 @@ function Navbar () {
                         <ul className="navbar-nav float-md-left">
 
                             <li className="nav-item">
-                                <a className="nav-link active" href="/">Home</a>
+                                <Link className="nav-link active" to="/">Home</Link>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link" href="#products">Products</a>
+                                <Link className="nav-link" to="/#products">Products</Link>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link shop-img" href="/">
-                                    <img src={shop} alt="logo" className="img-fluid" /> 
-                                </a>
+                                <Link className="nav-link shop-img" to="/cart">
+                                    <img src={shop} alt="logo" className="img-fluid" />
+                                </Link>
                             </li>
 
                         </ul>
@@ -46,7 +47,7 @@ function Navbar () {
                 </div>
 
             </nav>
-            
+
         </React.Fragment>
     )
 }

@@ -1,19 +1,31 @@
-import React from 'react'; 
-// import '../App.css';
-import Header from './Header';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './Layout';
 import ProductControl from './ProductControl';
-import AboutUs from './AboutUs';
-import Footer from './Footer';
+import Header from './Header';
+import Login from './Login';
+import Register from './Register';
+import Cart from './Cart';
+import Checkout from './Checkout';
 
 function App() {
   return (
-    <div className="container-fluid">
-      {/* <h1> App</h1> */}
-      <Header />
-      <ProductControl />
-      <AboutUs />
-      <Footer />
-    </div>
+    <Layout>
+      <Routes>
+        <Route path="/" element={
+          <React.Fragment>
+            <Header />
+            <div className="container">
+              <ProductControl />
+            </div>
+          </React.Fragment>
+        } />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+      </Routes>
+    </Layout>
   );
 }
 
