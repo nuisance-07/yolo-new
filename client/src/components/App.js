@@ -5,7 +5,7 @@ import ProductControl from './ProductControl';
 import ProductDetail from './ProductDetail';
 import EditProduct from './EditProduct';
 import NewProduct from './NewProduct';
-import Header from './Header';
+
 import Login from './Login';
 import Register from './Register';
 import Cart from './Cart';
@@ -17,14 +17,7 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={
-          <React.Fragment>
-            <Header />
-            <div className="container">
-              <ProductControl />
-            </div>
-          </React.Fragment>
-        } />
+        <Route path="/" element={<ProductControl />} />
         <Route path="/product/new" element={<NewProduct />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/product/:id/edit" element={<EditProduct />} />
