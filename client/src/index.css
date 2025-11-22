@@ -298,6 +298,7 @@ a:hover {
 .footer-links a:hover {
   color: #fff;
 }
+
 /* Product Carousel */
 .product-carousel-container {
   width: 100%;
@@ -309,7 +310,7 @@ a:hover {
 .product-carousel-track {
   display: flex;
   width: max-content;
-  animation: scroll 40s linear infinite;
+  animation: scroll 120s linear infinite;
 }
 
 .product-carousel-container:hover .product-carousel-track {
@@ -326,6 +327,7 @@ a:hover {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -333,10 +335,12 @@ a:hover {
 
 /* Ensure Product Card fits in carousel */
 .product-card {
-  margin-bottom: 0; /* Override previous margin */
+  margin-bottom: 0;
+  /* Override previous margin */
   height: 100%;
 }
 
 .product-img-container {
-  height: 350px; /* Slightly smaller for carousel */
+  height: 350px;
+  /* Slightly smaller for carousel */
 }

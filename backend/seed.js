@@ -8,7 +8,7 @@ const products = [
         name: 'Italian Wool Suit',
         price: 1200,
         description: 'Hand-tailored Italian wool suit in charcoal grey. Perfect for the modern gentleman.',
-        photo: 'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?auto=format&fit=crop&w=800&q=80',
         quantity: 15,
         category: 'Men'
     },
@@ -16,7 +16,7 @@ const products = [
         name: 'Cashmere Turtleneck',
         price: 350,
         description: 'Luxuriously soft cashmere turtleneck sweater in midnight blue.',
-        photo: 'https://images.unsplash.com/photo-1624223354576-432958b73682?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=80',
         quantity: 25,
         category: 'Men'
     },
@@ -24,7 +24,7 @@ const products = [
         name: 'Oxford Leather Brogues',
         price: 450,
         description: 'Handcrafted leather brogues with intricate detailing.',
-        photo: 'https://images.unsplash.com/photo-1478186111890-6eb94f668388?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=800&q=80',
         quantity: 20,
         category: 'Men'
     },
@@ -34,7 +34,7 @@ const products = [
         name: 'Silk Evening Gown',
         price: 1800,
         description: 'Elegant floor-length silk gown in emerald green.',
-        photo: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=800&q=80',
         quantity: 10,
         category: 'Women'
     },
@@ -42,7 +42,7 @@ const products = [
         name: 'Designer Leather Tote',
         price: 950,
         description: 'Spacious and stylish leather tote bag with gold hardware.',
-        photo: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80',
         quantity: 15,
         category: 'Women'
     },
@@ -50,7 +50,7 @@ const products = [
         name: 'Cashmere Wrap Coat',
         price: 1100,
         description: 'Classic camel cashmere coat with a belted waist.',
-        photo: 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1539533018447-63fcce2678e3?auto=format&fit=crop&w=800&q=80',
         quantity: 12,
         category: 'Women'
     },
@@ -60,7 +60,7 @@ const products = [
         name: 'Petite Velvet Dress',
         price: 180,
         description: 'Adorable velvet dress for special occasions.',
-        photo: 'https://images.unsplash.com/photo-1621452773781-0f992ee03591?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&w=800&q=80',
         quantity: 20,
         category: 'Kids'
     },
@@ -68,7 +68,7 @@ const products = [
         name: 'Junior Tuxedo Set',
         price: 250,
         description: 'Miniature tuxedo set for the little gentleman.',
-        photo: 'https://images.unsplash.com/photo-1519238263496-636027cb46f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?auto=format&fit=crop&w=800&q=80',
         quantity: 15,
         category: 'Kids'
     },
@@ -78,7 +78,7 @@ const products = [
         name: 'Chronograph Master',
         price: 5500,
         description: 'Swiss-made automatic chronograph with a stainless steel bracelet.',
-        photo: 'https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=800&q=80',
         quantity: 5,
         category: 'Watches'
     },
@@ -86,7 +86,7 @@ const products = [
         name: 'Gold Vintage Timepiece',
         price: 8200,
         description: '18k gold vintage-inspired watch with a leather strap.',
-        photo: 'https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1587836374062-d47b01513ddb?auto=format&fit=crop&w=800&q=80',
         quantity: 3,
         category: 'Watches'
     },
@@ -94,7 +94,7 @@ const products = [
         name: 'Minimalist Diver',
         price: 3200,
         description: 'Professional diver watch with 300m water resistance.',
-        photo: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1606390797419-0c0fb0e41e62?auto=format&fit=crop&w=800&q=80',
         quantity: 8,
         category: 'Watches'
     },
@@ -104,7 +104,7 @@ const products = [
         name: 'Diamond Tennis Bracelet',
         price: 4500,
         description: 'Classic diamond tennis bracelet set in white gold.',
-        photo: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80',
         quantity: 5,
         category: 'Jewellery'
     },
@@ -112,7 +112,7 @@ const products = [
         name: 'Pearl Drop Earrings',
         price: 850,
         description: 'Elegant freshwater pearl drop earrings.',
-        photo: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80',
         quantity: 15,
         category: 'Jewellery'
     },
@@ -120,7 +120,7 @@ const products = [
         name: 'Gold Signet Ring',
         price: 600,
         description: 'Solid gold signet ring, suitable for engraving.',
-        photo: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80',
         quantity: 10,
         category: 'Jewellery'
     },
@@ -130,7 +130,7 @@ const products = [
         name: 'Aviator Sunglasses',
         price: 280,
         description: 'Classic aviator sunglasses with polarized lenses.',
-        photo: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=800&q=80',
         quantity: 30,
         category: 'Accessories'
     },
@@ -138,7 +138,7 @@ const products = [
         name: 'Silk Scarf',
         price: 150,
         description: 'Printed silk scarf, hand-rolled edges.',
-        photo: 'https://images.unsplash.com/photo-1584030373081-f37b7bb4fa8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        photo: 'https://images.unsplash.com/photo-1601924638867-56e2e87b9e4d?auto=format&fit=crop&w=800&q=80',
         quantity: 25,
         category: 'Accessories'
     }
