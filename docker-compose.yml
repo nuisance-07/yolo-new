@@ -11,7 +11,7 @@ services:
     environment:
       - MONGO_INITDB_DATABASE=yolomy
   backend:
-    image: mwas121/yolo-backend:1.0.0
+    build: ./backend
     container_name: container-ya-backend
     ports:
       - "5000:5000"
@@ -22,7 +22,7 @@ services:
     networks:
       - yolo-net
   frontend:
-    image: mwas121/yolo-client:1.0.0
+    build: ./client
     container_name: container-ya-frontend
     ports:
       - "3000:80"
