@@ -101,29 +101,49 @@ class ProductControl extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="row mb-4 mt-3 align-items-center">
-                    <div className="col-md-5">
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Search products..."
-                            value={this.state.search}
-                            onChange={this.handleSearchChange}
-                        />
-                    </div>
-                    <div className="col-md-5">
-                        <select className="form-control" value={this.state.category} onChange={this.handleCategoryChange}>
-                            <option value="">All Categories</option>
-                            <option value="Men">Men</option>
-                            <option value="Women">Women</option>
-                            <option value="Kids">Kids</option>
-                        </select>
-                    </div>
-                    <div className="col-md-2">
-                        <Link to="/product/new" className="btn btn-primary btn-block">Add Product</Link>
+                <div className="hero-section">
+                    <div className="hero-overlay"></div>
+                    <div className="hero-content">
+                        <h1 className="hero-title">Timeless Elegance</h1>
+                        <p className="hero-subtitle">Discover the Art of Luxury</p>
+                        <button className="btn btn-hero" onClick={() => document.getElementById('collection').scrollIntoView({ behavior: 'smooth' })}>
+                            Explore Collection
+                        </button>
                     </div>
                 </div>
-                <ProductList productList={this.state.actualProductList} />
+
+                <div className="container" id="collection">
+                    <div className="row mb-5 mt-5 align-items-center justify-content-center">
+                        <div className="col-md-8 text-center">
+                            <h2 className="mb-4">The Collection</h2>
+                            <p className="text-muted">Curated pieces for the discerning individual.</p>
+                        </div>
+                    </div>
+
+                    <div className="row mb-4 align-items-center">
+                        <div className="col-md-5">
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Search products..."
+                                value={this.state.search}
+                                onChange={this.handleSearchChange}
+                            />
+                        </div>
+                        <div className="col-md-5">
+                            <select className="form-control" value={this.state.category} onChange={this.handleCategoryChange}>
+                                <option value="">All Categories</option>
+                                <option value="Men">Men</option>
+                                <option value="Women">Women</option>
+                                <option value="Kids">Kids</option>
+                            </select>
+                        </div>
+                        <div className="col-md-2">
+                            <Link to="/product/new" className="btn btn-primary btn-block">Add Product</Link>
+                        </div>
+                    </div>
+                    <ProductList productList={this.state.actualProductList} />
+                </div>
             </React.Fragment>
         )
     }

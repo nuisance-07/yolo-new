@@ -10,6 +10,7 @@ import Login from './Login';
 import Register from './Register';
 import Cart from './Cart';
 import Checkout from './Checkout';
+import Profile from './Profile';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Layout>
   );

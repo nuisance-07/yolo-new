@@ -1,43 +1,30 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
-import Default_image from '../images/product_image.jpeg'
-
+import PropTypes from 'prop-types';
 
 function Product(props) {
-
-
     return (
-        <React.Fragment>
-            <div className="col-12 col-sm-12 col-md-4" >
-                <Link to={`/product/${props.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <div className="product">
-                        <div className="product-img">
-                            <img
-                                src={props.photo ? `http://localhost:5000/images/${props.photo}` : Default_image}
-                                className="img-fluid d-block mx-auto"
-                                alt={props.name} />
-                        </div>
-                        <div className="product-name-cost">
-                            <h5 className="float-left gold">{props.name} </h5>
-                            <h6 className="float-right font-weight-bold"> Ksh  {props.price}</h6>
-                        </div>
-                        <div >
-                        </div>
+        <div className="col-md-4 col-sm-6">
+            <div className="product-card">
+                <Link to={`/product/${props.id}`}>
+                    <div className="product-img-container">
+                        <img src={props.photo} alt={props.name} className="product-img" />
+                    </div>
+                    <div className="product-info">
+                        <h3 className="product-name">{props.name}</h3>
+                        <p className="product-price">${props.price}</p>
                     </div>
                 </Link>
             </div>
-        </React.Fragment>
-    )
+        </div>
+    );
 }
 
 Product.propTypes = {
     name: PropTypes.string,
     price: PropTypes.number,
     photo: PropTypes.string,
-    id: PropTypes.string,
-    whenProductClicked: PropTypes.func,
-}
+    id: PropTypes.string
+};
 
 export default Product;
