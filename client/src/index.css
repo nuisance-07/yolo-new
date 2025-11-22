@@ -298,3 +298,45 @@ a:hover {
 .footer-links a:hover {
   color: #fff;
 }
+/* Product Carousel */
+.product-carousel-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 2rem 0;
+  position: relative;
+}
+
+.product-carousel-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 40s linear infinite;
+}
+
+.product-carousel-container:hover .product-carousel-track {
+  animation-play-state: paused;
+}
+
+.product-carousel-item {
+  width: 300px;
+  margin: 0 1rem;
+  flex-shrink: 0;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Ensure Product Card fits in carousel */
+.product-card {
+  margin-bottom: 0; /* Override previous margin */
+  height: 100%;
+}
+
+.product-img-container {
+  height: 350px; /* Slightly smaller for carousel */
+}
