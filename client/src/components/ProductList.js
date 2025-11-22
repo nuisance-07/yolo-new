@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Product from './Product';
 import PropTypes from 'prop-types';
 
@@ -6,6 +6,15 @@ function ProductList(props) {
     const [currentPage, setCurrentPage] = useState(0);
     const productsPerPage = 3;
     const totalPages = Math.ceil(props.productList.length / productsPerPage);
+
+    // Auto-advance every 5 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentPage((prev) => (prev + 1) % totalPages);
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [totalPages]);
 
     const getCurrentProducts = () => {
         const startIndex = currentPage * productsPerPage;

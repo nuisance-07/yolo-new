@@ -326,8 +326,8 @@ a:hover {
 
 .product-carousel-item {
   flex: 0 0 calc(33.333% - 1.5rem);
-  min-width: 350px;
-  max-width: 450px;
+  min-width: 400px;
+  max-width: 550px;
 }
 
 /* Navigation Arrows */
