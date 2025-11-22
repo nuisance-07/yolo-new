@@ -24,3 +24,5 @@ Built with MongoDB, Express.js, React, Node.js. Supports adding products via `/a
 
 ## Live URL
 http://<external-ip>:3000
+
+MANIFEST FILES ARE IN THE k8s FOLDER
