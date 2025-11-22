@@ -97,6 +97,24 @@ const Checkout = () => {
                                         <input type="text" className="form-control" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} required />
                                     </div>
                                 </div>
+
+                                <hr className="my-4" />
+                                <h4 className="mb-3">Payment Details</h4>
+                                <div className="form-group">
+                                    <label>Card Number</label>
+                                    <input type="text" className="form-control" placeholder="0000 0000 0000 0000" required />
+                                </div>
+                                <div className="form-row">
+                                    <div className="form-group col-md-6">
+                                        <label>Expiry Date</label>
+                                        <input type="text" className="form-control" placeholder="MM/YY" required />
+                                    </div>
+                                    <div className="form-group col-md-6">
+                                        <label>CVC</label>
+                                        <input type="text" className="form-control" placeholder="123" required />
+                                    </div>
+                                </div>
+
                                 <button type="submit" className="btn btn-success btn-block mt-3">Place Order</button>
                             </form>
                         </div>

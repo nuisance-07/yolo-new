@@ -30,6 +30,10 @@ function Navbar() {
                         <li className="nav-item">
                             <Link className="nav-link" to="/profile">Account</Link>
                         </li>
+                        {/* Ideally check if admin, but for now just a link */}
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/admin">Admin</Link>
+                        </li>
                     </ul>
                 </div>
             </div>

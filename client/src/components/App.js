@@ -11,6 +11,7 @@ import Register from './Register';
 import Cart from './Cart';
 import Checkout from './Checkout';
 import Profile from './Profile';
+import AdminDashboard from './AdminDashboard';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
     </Layout>
   );
