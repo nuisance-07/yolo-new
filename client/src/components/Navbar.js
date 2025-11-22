@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../images/logo/logo.png';
 import shop from '../images/logo/shop.png';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
 function Navbar() {
+    const { getCartCount } = useContext(CartContext);
 
     return (
         <React.Fragment>
@@ -12,11 +14,11 @@ function Navbar() {
 
                 <div className='container'>
 
-                    <a className="navbar-brand" href="/">
+                    <Link className="navbar-brand" to="/">
                         <div className="logo float-md-left">
                             <img src={logo} alt="logo" className="img-fluid" />
                         </div>
-                    </a>
+                    </Link>
 
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -37,6 +39,7 @@ function Navbar() {
                             <li className="nav-item">
                                 <Link className="nav-link shop-img" to="/cart">
                                     <img src={shop} alt="logo" className="img-fluid" />
+                                    <span className="badge badge-danger">{getCartCount()}</span>
                                 </Link>
                             </li>
 

@@ -4,17 +4,59 @@ const router = express.Router();
 // Product Model
 const Product = require('../../models/Products');
 const upload = require('../../upload');
+const auth = require('../../middleware/auth');
 
 
 // @route GET /products
-// @desc Get ALL products
+// @desc Get ALL products with optional filtering
 router.get('/', (req, res) => {
+    let query = {};
+    if (req.query.search) {
+        query.name = { $regex: req.query.search, $options: 'i' };
+    }
+    if (req.query.category) {
+        query.category = req.query.category;
+    }
+
     // Fetch all products from database
-    Product.find({}, (error, products) => {
+    Product.find(query, (error, products) => {
         if (error) console.log(error)
         res.json(products)
     })
 })
+
+// @route POST /products/:id/reviews
+// @desc  Create new review
+router.post('/:id/reviews', auth, (req, res) => {
+    const { rating, comment } = req.body;
+
+    Product.findById(req.params.id)
+        .then(product => {
+            if (product) {
+                const alreadyReviewed = product.reviews.find(
+                    r => r.user.toString() === req.user.id.toString()
+                );
+
+                if (alreadyReviewed) {
+                    return res.status(400).json({ msg: 'Product already reviewed' });
+                }
+
+                const review = {
+                    name: req.user.name,
+                    rating: Number(rating),
+                    comment,
+                    user: req.user.id
+                };
+
+                product.reviews.push(review);
+
+                product.save().then(updatedProduct => res.json(updatedProduct));
+            } else {
+                res.status(404).json({ msg: 'Product not found' });
+            }
+        })
+        .catch(err => res.status(404).json({ msg: 'Product not found' }));
+});
 
 // @route POST /products
 // @desc  Create a product

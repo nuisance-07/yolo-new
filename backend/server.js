@@ -44,6 +44,7 @@ app.use(cors());
 // Use product route
 app.use('/api/products', productRoute);
 app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/orders', require('./routes/api/orders'));
 
 // Define the PORT
 const PORT = process.env.PORT || 5000;

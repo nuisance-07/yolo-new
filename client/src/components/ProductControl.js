@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ProductList from './ProductList';
-import NewProductForm from './NewProductForm';
-import ProductDetail from './ProductDetail';
-import AddProduct from './AddProduct';
-import EditProductForm from './EditProductForm';
+import { Link } from 'react-router-dom';
 // import tshirt from '../images/products/tshirt.png';
 // import backpack from '../images/products/backpack.png';
 // import pants from '../images/products/pants.png';
@@ -68,151 +65,68 @@ class ProductControl extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            formVisibleOnPage: false,
             actualProductList: [],
-            selectedProduct: null,
-            editProduct: false,
-            uploadPhoto: null
-
+            search: '',
+            category: ''
         };
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/api/products')
+        this.fetchProducts();
+    }
+
+    fetchProducts = () => {
+        const { search, category } = this.state;
+        let url = 'http://localhost:5000/api/products?';
+        if (search) url += `search=${search}&`;
+        if (category) url += `category=${category}&`;
+
+        axios.get(url)
             .then(res => {
-                console.log(res)
                 this.setState({
                     actualProductList: res.data
                 })
             })
-    }
-    handleEditProductClick = () => {
-        console.log('HandleEditClick reached!!')
-        console.log(this.state.selectedProduct)
-        this.setState({
-            editProduct: true
-        })
-    }
-    handleAddButtonClick = (id) => {
-        const BuyProduct = this.state.actualProductList.filter(product => product._id === id)[0];
-        BuyProduct.quantity = BuyProduct.quantity - 1;
-        if (BuyProduct.quantity <= 0) {
-            BuyProduct.quantity = "Product is not Available"
-        }
-        this.setState({
-            selectedProduct: BuyProduct
-        })
-    }
-
-    handleClick = () => {
-        if (this.state.editProduct) {
-            this.setState({
-                editProduct: false
-            })
-        } else if (this.state.selectedProduct != null) {
-            this.setState({
-                formVisibleOnPage: false,
-                selectedProduct: null
-            });
-        } else {
-            this.setState(prevState => ({
-                formVisibleOnPage: !prevState.formVisibleOnPage
-            }));
-        }
-    }
-    // handlePhotoUpload = (photo)=>{
-    //     console.log(photo.file)
-    //     this.setState({
-    //         uploadPhoto: file.file
-    //     })
-
-
-    // }
-
-    // Method to handle adding a new product
-    handleAddingNewProduct = (newProduct) => {
-        const formData = new FormData();
-        formData.append('name', newProduct.name);
-        formData.append('price', newProduct.price);
-        formData.append('description', newProduct.description);
-        formData.append('quantity', newProduct.quantity);
-        if (newProduct.image) {
-            formData.append('image', newProduct.image);
-        }
-
-        axios.post('http://localhost:5000/api/products', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-            .then(res => console.log(res.data))
             .catch(err => console.log(err));
-
-        this.setState({
-            formVisibleOnPage: false
-        })
-    };
-    handleDeletingProduct = (id) => {
-        axios.delete('http://localhost:5000/api/products/' + id)
-            .then(res => console.log(res.data))
-            .catch((error) => {
-                console.log(error)
-            })
-        this.setState({
-            actualProductList: this.state.actualProductList.filter(product => product._id !== id),
-            formVisibleOnPage: false,
-            selectedProduct: null
-        })
     }
 
-    // Method to handle click event on a product
-    handleChangingSelectedProduct = (id) => {
-        console.log(id)
-        const selectedProduct = this.state.actualProductList.filter(product => product._id === id)[0];
-        this.setState({ selectedProduct: selectedProduct });
+    handleSearchChange = (e) => {
+        this.setState({ search: e.target.value }, this.fetchProducts);
     }
-    handleEditingProduct = (editedProduct) => {
 
-        axios.put('http://localhost:5000/api/products/' + this.state.selectedProduct._id, editedProduct)
-            .then(res => console.log(res.data))
-
-        this.setState({
-            editProduct: false,
-            formVisibleOnPage: false
-        })
-        window.location = '/';
+    handleCategoryChange = (e) => {
+        this.setState({ category: e.target.value }, this.fetchProducts);
     }
 
     render() {
-        let currentlyVisibleState = null;
-        let buttonText = null;
-        // let addProductButton = null;
-        if (this.state.editProduct) {
-            currentlyVisibleState = <EditProductForm product={this.state.selectedProduct} onEditProduct={this.handleEditingProduct} />
-            buttonText = "Back to Product Detail "
-        } else if (this.state.selectedProduct != null) {
-            currentlyVisibleState = < ProductDetail product={this.state.selectedProduct} onBuyButtonClick={this.handleAddButtonClick} onDeleteProduct={this.handleDeletingProduct} onEditProductClick={this.handleEditProductClick} />
-            buttonText = "Back to product list"
-        } else if (this.state.formVisibleOnPage) {
-            currentlyVisibleState = < NewProductForm onNewProductCreation={this.handleAddingNewProduct} onPhotoUpload={this.handlePhotoUpload} />
-            buttonText = "Back to product list"
-        } else {
-            currentlyVisibleState = < ProductList productList={this.state.actualProductList} onProductSelection={this.handleChangingSelectedProduct} />
-            buttonText = "Add a product"
-            // addProductButton = <button onClick={this.handleClick} className="see-all-products text-center mx-auto">Add a product</button>
-        }
         return (
             <React.Fragment>
-                <AddProduct
-                    buttonText={buttonText}
-                    whenButtonClicked={this.handleClick}
-                />
-
-                {currentlyVisibleState}
+                <div className="row mb-4 mt-3 align-items-center">
+                    <div className="col-md-5">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Search products..."
+                            value={this.state.search}
+                            onChange={this.handleSearchChange}
+                        />
+                    </div>
+                    <div className="col-md-5">
+                        <select className="form-control" value={this.state.category} onChange={this.handleCategoryChange}>
+                            <option value="">All Categories</option>
+                            <option value="Men">Men</option>
+                            <option value="Women">Women</option>
+                            <option value="Kids">Kids</option>
+                        </select>
+                    </div>
+                    <div className="col-md-2">
+                        <Link to="/product/new" className="btn btn-primary btn-block">Add Product</Link>
+                    </div>
+                </div>
+                <ProductList productList={this.state.actualProductList} />
             </React.Fragment>
         )
     }
 }
 
 export default ProductControl;
-
