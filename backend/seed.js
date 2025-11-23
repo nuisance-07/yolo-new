@@ -8,7 +8,7 @@ const products = [
         name: 'Italian Wool Suit',
         price: 1200,
         description: 'Hand-tailored Italian wool suit in charcoal grey. Perfect for the modern gentleman.',
-        photo: 'https://picsum.photos/seed/suit/800/600',
+        photo: 'http://localhost:5000/images/products/giacket.png',
         quantity: 15,
         category: 'Men'
     },
@@ -16,7 +16,7 @@ const products = [
         name: 'Cashmere Turtleneck',
         price: 350,
         description: 'Luxuriously soft cashmere turtleneck sweater in midnight blue.',
-        photo: 'https://picsum.photos/seed/turtleneck/800/600',
+        photo: 'http://localhost:5000/images/products/tshirt.png',
         quantity: 25,
         category: 'Men'
     },
@@ -24,7 +24,7 @@ const products = [
         name: 'Oxford Leather Brogues',
         price: 450,
         description: 'Handcrafted leather brogues with intricate detailing.',
-        photo: 'https://picsum.photos/seed/brogues/800/600',
+        photo: 'http://localhost:5000/images/products/trekkingshoes.png',
         quantity: 20,
         category: 'Men'
     },
@@ -34,7 +34,7 @@ const products = [
         name: 'Silk Evening Gown',
         price: 1800,
         description: 'Elegant floor-length silk gown in emerald green.',
-        photo: 'https://picsum.photos/seed/gown/800/600',
+        photo: 'http://localhost:5000/images/products/tshirt_ladies.png',
         quantity: 10,
         category: 'Women'
     },
@@ -42,7 +42,7 @@ const products = [
         name: 'Designer Leather Tote',
         price: 950,
         description: 'Spacious and stylish leather tote bag with gold hardware.',
-        photo: 'https://picsum.photos/seed/tote/800/600',
+        photo: 'http://localhost:5000/images/products/backpack.png',
         quantity: 15,
         category: 'Women'
     },
@@ -50,7 +50,7 @@ const products = [
         name: 'Cashmere Wrap Coat',
         price: 1100,
         description: 'Classic camel cashmere coat with a belted waist.',
-        photo: 'https://picsum.photos/seed/coat/800/600',
+        photo: 'http://localhost:5000/images/products/giacket.png',
         quantity: 12,
         category: 'Women'
     },
@@ -60,7 +60,7 @@ const products = [
         name: 'Petite Velvet Dress',
         price: 180,
         description: 'Adorable velvet dress for special occasions.',
-        photo: 'https://picsum.photos/seed/dress/800/600',
+        photo: 'http://localhost:5000/images/products/tshirt_ladies.png',
         quantity: 20,
         category: 'Kids'
     },
@@ -68,7 +68,7 @@ const products = [
         name: 'Junior Tuxedo Set',
         price: 250,
         description: 'Miniature tuxedo set for the little gentleman.',
-        photo: 'https://picsum.photos/seed/tuxedo/800/600',
+        photo: 'http://localhost:5000/images/products/tshirt.png',
         quantity: 15,
         category: 'Kids'
     },
@@ -78,7 +78,7 @@ const products = [
         name: 'Chronograph Master',
         price: 5500,
         description: 'Swiss-made automatic chronograph with a stainless steel bracelet.',
-        photo: 'https://picsum.photos/seed/watch1/800/600',
+        photo: 'https://loremflickr.com/800/600/watch',
         quantity: 5,
         category: 'Watches'
     },
@@ -86,7 +86,7 @@ const products = [
         name: 'Gold Vintage Timepiece',
         price: 8200,
         description: '18k gold vintage-inspired watch with a leather strap.',
-        photo: 'https://picsum.photos/seed/watch2/800/600',
+        photo: 'https://loremflickr.com/800/600/watch,gold',
         quantity: 3,
         category: 'Watches'
     },
@@ -94,7 +94,7 @@ const products = [
         name: 'Minimalist Diver',
         price: 3200,
         description: 'Professional diver watch with 300m water resistance.',
-        photo: 'https://picsum.photos/seed/watch3/800/600',
+        photo: 'https://loremflickr.com/800/600/watch,diver',
         quantity: 8,
         category: 'Watches'
     },
@@ -104,7 +104,7 @@ const products = [
         name: 'Diamond Tennis Bracelet',
         price: 4500,
         description: 'Classic diamond tennis bracelet set in white gold.',
-        photo: 'https://picsum.photos/seed/bracelet/800/600',
+        photo: 'https://loremflickr.com/800/600/jewellery,diamond',
         quantity: 5,
         category: 'Jewellery'
     },
@@ -112,7 +112,7 @@ const products = [
         name: 'Pearl Drop Earrings',
         price: 850,
         description: 'Elegant freshwater pearl drop earrings.',
-        photo: 'https://picsum.photos/seed/earrings/800/600',
+        photo: 'https://loremflickr.com/800/600/jewellery,pearl',
         quantity: 15,
         category: 'Jewellery'
     },
@@ -120,7 +120,7 @@ const products = [
         name: 'Gold Signet Ring',
         price: 600,
         description: 'Solid gold signet ring, suitable for engraving.',
-        photo: 'https://picsum.photos/seed/ring/800/600',
+        photo: 'https://loremflickr.com/800/600/ring,gold',
         quantity: 10,
         category: 'Jewellery'
     },
@@ -130,7 +130,7 @@ const products = [
         name: 'Aviator Sunglasses',
         price: 280,
         description: 'Classic aviator sunglasses with polarized lenses.',
-        photo: 'https://picsum.photos/seed/glasses/800/600',
+        photo: 'https://loremflickr.com/800/600/sunglasses',
         quantity: 30,
         category: 'Accessories'
     },
@@ -138,7 +138,7 @@ const products = [
         name: 'Silk Scarf',
         price: 150,
         description: 'Printed silk scarf, hand-rolled edges.',
-        photo: 'https://picsum.photos/seed/scarf/800/600',
+        photo: 'https://loremflickr.com/800/600/scarf',
         quantity: 25,
         category: 'Accessories'
     }

@@ -1,47 +1,35 @@
 import React from 'react';
-import g_plus from '../images/social_icons/g_plus.png';
-import facebook from '../images/social_icons/facebook.png';
-import youtube from '../images/social_icons/you_tube.png';
-import stumble_upon from '../images/social_icons/stumble_upon.png';
-import skype from '../images/social_icons/skype.png';
-import flickr from '../images/social_icons/flickr.png';
-import twitter from '../images/social_icons/twitter.png';
-import pinterest from '../images/social_icons/pinterest.png';
+import { FaFacebookF, FaTwitter, FaInstagram, FaPinterestP, FaYoutube } from 'react-icons/fa';
 
-function Footer () {
+function Footer() {
     return (
         <React.Fragment>
-            <div className="footer" >
+            <div className="footer">
                 <div className="container">
                     <div className="row">
 
                         <div className="col-md-4">
-
                             <div className="yolomy-div">
                                 <div className="yolomy">YOLOMY</div>
                                 <p className="yolomy-desc">
                                     WE ARE YOLOMY - WE UNDERSTAND <br />
                                     FASHION AND STYLE. WE CRAFT OUR <br />
-                                    PRODUCTS WITH LOVE AND DILIGENCE. <br /> 
+                                    PRODUCTS WITH LOVE AND DILIGENCE. <br />
                                 </p>
                             </div>
-
                         </div>
 
                         <div className="col-md-4">
                             <p className="text-center yolomy">We are social</p>
                             <br />
 
-                            <p className="mx-auto icons">
-                                <img src={g_plus} className="socio-icon" alt="g-plus"/>
-                                <img src={facebook} className="socio-icon" alt="facebook"/>
-                                <img src={youtube} className="socio-icon" alt="youtube"/>
-                                <img src={stumble_upon} className="socio-icon" alt="stumble upon"/>
-                                <img src={skype} className="socio-icon" alt="skype" />
-                                <img src={flickr} className="socio-icon" alt="flickr" />
-                                <img src={twitter} className="socio-icon" alt="twitter" />
-                                <img src={pinterest} className="socio-icon" alt="pinterest" />
-                            </p>
+                            <div className="d-flex justify-content-center icons-container">
+                                <a href="https://facebook.com" className="socio-icon"><FaFacebookF /></a>
+                                <a href="https://twitter.com" className="socio-icon"><FaTwitter /></a>
+                                <a href="https://instagram.com" className="socio-icon"><FaInstagram /></a>
+                                <a href="https://pinterest.com" className="socio-icon"><FaPinterestP /></a>
+                                <a href="https://youtube.com" className="socio-icon"><FaYoutube /></a>
+                            </div>
                         </div>
 
                         <div className="col-md-4">
@@ -53,7 +41,6 @@ function Footer () {
                                     Yolomy: We Mean Fashion
                                 </div>
                             </div>
-
                         </div>
 
                         <div className="hide-on-mobile">
@@ -65,7 +52,6 @@ function Footer () {
                         </div>
                     </div>
                 </div>
-
             </div>
         </React.Fragment>
     )
