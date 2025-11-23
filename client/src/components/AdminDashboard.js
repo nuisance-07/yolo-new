@@ -20,10 +20,10 @@ const AdminDashboard = () => {
                     }
                 };
 
-                const ordersRes = await axios.get('http://localhost:5000/api/orders/all', config);
+                const ordersRes = await axios.get('/api/orders/all', config);
                 setOrders(ordersRes.data);
 
-                const productsRes = await axios.get('http://localhost:5000/api/products');
+                const productsRes = await axios.get('/api/products');
                 setProducts(productsRes.data);
 
                 setLoading(false);
@@ -46,7 +46,7 @@ const AdminDashboard = () => {
                     'x-auth-token': token
                 }
             };
-            await axios.put(`http://localhost:5000/api/orders/${orderId}/status`, { status: newStatus }, config);
+            await axios.put(`/api/orders/${orderId}/status`, { status: newStatus }, config);
 
             // Update local state
             setOrders(orders.map(order => order._id === orderId ? { ...order, status: newStatus } : order));
@@ -58,7 +58,7 @@ const AdminDashboard = () => {
     const handleDeleteProduct = async (productId) => {
         if (window.confirm('Are you sure you want to delete this product?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/products/${productId}`);
+                await axios.delete(`/api/products/${productId}`);
                 setProducts(products.filter(p => p._id !== productId));
             } catch (err) {
                 console.error(err);
