@@ -8,23 +8,24 @@ function Product(props) {
     };
 
     return (
-        <div className="col-md-4 col-sm-6">
-            <div className="product-card">
-                <Link to={`/product/${props.id}`}>
-                    <div className="product-img-container">
-                        <img
-                            src={props.photo}
-                            alt={props.name}
-                            className="product-img"
-                            onError={handleImageError}
-                        />
+        <div className="product-card">
+            <Link to={`/product/${props.id}`}>
+                <div className="product-img-container">
+                    <img
+                        src={props.photo}
+                        alt={props.name}
+                        className="product-img"
+                        onError={handleImageError}
+                    />
+                    <div className="product-overlay">
+                        <button className="btn btn-quick-view">Quick View</button>
                     </div>
-                    <div className="product-info">
-                        <h3 className="product-name">{props.name}</h3>
-                        <p className="product-price">${props.price}</p>
-                    </div>
-                </Link>
-            </div>
+                </div>
+                <div className="product-info">
+                    <h3 className="product-name">{props.name}</h3>
+                    <p className="product-price">${props.price}</p>
+                </div>
+            </Link>
         </div>
     );
 }

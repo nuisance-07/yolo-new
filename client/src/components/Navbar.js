@@ -1,12 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 
 function Navbar() {
     const { getCartCount } = useContext(CartContext);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const isScrolled = window.scrollY > 50;
+            if (isScrolled !== scrolled) {
+                setScrolled(isScrolled);
+            }
+        };
+
+        document.addEventListener('scroll', handleScroll);
+        return () => {
+            document.removeEventListener('scroll', handleScroll);
+        };
+    }, [scrolled]);
 
     return (
-        <nav className="navbar navbar-expand-lg fixed-top">
+        <nav className={`navbar navbar-expand-lg fixed-top ${scrolled ? 'scrolled' : ''}`}>
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">YOLO</Link>
 
@@ -30,7 +45,6 @@ function Navbar() {
                         <li className="nav-item">
                             <Link className="nav-link" to="/profile">Account</Link>
                         </li>
-                        {/* Ideally check if admin, but for now just a link */}
                         <li className="nav-item">
                             <Link className="nav-link" to="/admin">Admin</Link>
                         </li>
