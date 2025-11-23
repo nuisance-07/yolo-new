@@ -302,7 +302,8 @@ a:hover {
 /* Product Carousel */
 .product-carousel-container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 95vw;
+  /* Much wider container */
   margin: 0 auto;
   padding: 3rem 0;
   position: relative;
@@ -327,7 +328,7 @@ a:hover {
 .product-carousel-item {
   flex: 0 0 calc(33.333% - 1.5rem);
   min-width: 400px;
-  max-width: 550px;
+  /* Removed max-width to allow full expansion */
 }
 
 /* Navigation Arrows */
