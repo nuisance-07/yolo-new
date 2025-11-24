@@ -10,17 +10,17 @@ function Footer() {
 
                         <div className="col-md-4">
                             <div className="yolomy-div">
-                                <div className="yolomy">YOLOMY</div>
+                                <div className="yolomy">TechNova</div>
                                 <p className="yolomy-desc">
-                                    WE ARE YOLOMY - WE UNDERSTAND <br />
-                                    FASHION AND STYLE. WE CRAFT OUR <br />
-                                    PRODUCTS WITH LOVE AND DILIGENCE. <br />
+                                    WE ARE TECHNOVA - WE UNDERSTAND <br />
+                                    INNOVATION AND FUTURE. WE CRAFT OUR <br />
+                                    EXPERIENCE WITH PRECISION. <br />
                                 </p>
                             </div>
                         </div>
 
                         <div className="col-md-4">
-                            <p className="text-center yolomy">We are social</p>
+                            <p className="text-center yolomy">Connect With Us</p>
                             <br />
 
                             <div className="d-flex justify-content-center icons-container">
@@ -38,7 +38,7 @@ function Footer() {
                                     CREDITS | PRIVACY | ABOUT | CONTACT
                                 </div>
                                 <div className="slogan yolomy">
-                                    Yolomy: We Mean Fashion
+                                    TechNova: The Future is Now
                                 </div>
                             </div>
                         </div>
@@ -48,7 +48,7 @@ function Footer() {
                         </div>
 
                         <div className="col-12">
-                            <p className="text-center copyrights">COPYRIGHT, YOLOMY INC</p>
+                            <p className="text-center copyrights">COPYRIGHT, TECHNOVA INC</p>
                         </div>
                     </div>
                 </div>
